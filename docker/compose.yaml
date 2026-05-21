@@ -1,0 +1,12 @@
+services:
+  test-jdk11:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.jdk11
+    container_name: hpke-test-jdk11
+
+  test-jdk21:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.jdk21
+    container_name: hpke-test-jdk21

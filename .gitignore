@@ -1,0 +1,39 @@
+.gradle/
+build/
+**/build/
+.idea/
+*.iml
+*.ipr
+*.iws
+.kotlin/
+out/
+.DS_Store
+hs_err_pid*
+replay_pid*
+
+# Editor and OS
+.vscode/
+*~
+*.swp
+
+# Java / build artifacts
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Keystores and secrets
+*.jks
+*.keystore
+.env
+
+# Temp/cache
+*.tmp
+*.cache
+
+# Backup files
+*.bak
+
+# Compiled output from IDE or local runs
+**/bin/

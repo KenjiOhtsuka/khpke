@@ -1,0 +1,7 @@
+FROM gradle:8.7-jdk21
+
+WORKDIR /home/gradle/project
+
+COPY --chown=gradle:gradle . .
+
+RUN gradle --no-daemon clean test
