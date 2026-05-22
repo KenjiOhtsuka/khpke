@@ -37,3 +37,5 @@ replay_pid*
 
 # Compiled output from IDE or local runs
 **/bin/
+
+!gradle/wrapper/gradle-wrapper.jar
