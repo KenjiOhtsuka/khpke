@@ -1,6 +1,6 @@
-# khpke
+# KHPKE
 
-Lightweight Kotlin HPKE library and samples.
+Kotlin HPKE library and samples.
 
 Quick start
 -----------
