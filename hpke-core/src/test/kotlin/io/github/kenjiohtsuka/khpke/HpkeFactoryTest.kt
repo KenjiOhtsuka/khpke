@@ -4,7 +4,6 @@ import io.github.kenjiohtsuka.khpke.aead.Aead
 import io.github.kenjiohtsuka.khpke.aead.AeadType
 import io.github.kenjiohtsuka.khpke.context.HpkeConfig
 import io.github.kenjiohtsuka.khpke.crypto.CryptoProvider
-import io.github.kenjiohtsuka.khpke.exception.InvalidConfigException
 import io.github.kenjiohtsuka.khpke.kdf.Kdf
 import io.github.kenjiohtsuka.khpke.kdf.KdfType
 import io.github.kenjiohtsuka.khpke.kem.Kem
@@ -14,7 +13,7 @@ import java.security.KeyPair
 import java.security.PrivateKey
 import java.security.PublicKey
 import org.junit.jupiter.api.Assertions.assertSame
-import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Test
 
 class HpkeFactoryTest {
@@ -56,14 +55,14 @@ class HpkeFactoryTest {
     }
 
     @Test
-    fun `rejects built in types until implementations are wired`() {
+    fun `creates hpke with built in types`() {
         val config = HpkeConfig(
             kem = KemType.DHKEM_X25519_HKDF_SHA256,
             kdf = KdfType.HKDF_SHA256,
             aead = AeadType.AES_GCM_128,
         )
 
-        assertThrows(InvalidConfigException::class.java) {
+        assertDoesNotThrow {
             HpkeFactory.create(config, HpkeMode.Base)
         }
     }
