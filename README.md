@@ -73,13 +73,20 @@ For X25519 and ChaCha20-Poly1305 ensure your JDK supports these algorithms or us
 Building & publishing
 ---------------------
 
-- Build locally with Gradle:
+- Development remains Docker-first. Build and test locally with Docker Compose:
 
 ```bash
-./gradlew clean build
+docker compose -f docker/compose.yaml build
 ```
 
-- To prepare for publishing (e.g., JitPack), ensure `group`, `version`, and signing config are set in Gradle.
+- Build locally with Gradle when you want to use your host JDK:
+
+```bash
+gradle clean build
+```
+
+- For JitPack distribution, the repo includes `jitpack.yml` so JitPack can run `gradle clean build` on JDK 11.
+- If you change the public API or modules, make sure tags are created from a passing build before publishing.
 
 Notes
 -----
