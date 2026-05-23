@@ -1,4 +1,5 @@
 jdk:
   - openjdk17
 install:
-  - ./gradlew -Dmaven.repo.local=.m2 :hpke-core:publishToMavenLocal
+  - mkdir -p $HOME/.m2/repository
+  - ./gradlew -Dmaven.repo.local=$HOME/.m2/repository :hpke-core:publishToMavenLocal

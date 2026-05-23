@@ -85,7 +85,7 @@ docker compose -f docker/compose.dev.yaml run --rm dev ./gradlew --no-daemon tes
 ./gradlew clean build
 ```
 
-- For JitPack distribution, the repo includes `jitpack.yml` and publishes the `hpke-core` module with `publishToMavenLocal` on JDK 17 using a workspace-local Maven repository.
+- For JitPack distribution, the repo includes `jitpack.yml` and publishes the `hpke-core` module with `publishToMavenLocal` on JDK 17 into `$HOME/.m2/repository`, creating the directory first so JitPack can detect the artifact.
 - The published Maven coordinates for the core library are `com.github.kenjiohtsuka:khpke:0.0.4`-style snapshots from tags, with the `hpke-core` artifact id.
 - If you change the public API or modules, make sure tags are created from a passing build before publishing.
 
