@@ -1,5 +1,7 @@
 # KHPKE
 
+[![](https://jitpack.io/v/KenjiOhtsuka/khpke.svg)](https://jitpack.io/#KenjiOhtsuka/khpke)
+
 Kotlin HPKE library and samples.
 
 Quick start
