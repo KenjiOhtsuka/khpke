@@ -15,6 +15,8 @@ dependencies {
     testImplementation(project(":hpke-core"))
     testImplementation(kotlin("test"))
     testImplementation("com.google.code.gson:gson:2.10.1")
+    testImplementation("org.bouncycastle:bcprov-jdk15on:1.70")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
 }
 
 tasks.test {

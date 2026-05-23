@@ -1,0 +1,18 @@
+services:
+  dev:
+    image: gradle:9.5.1-jdk17
+    container_name: hpke-dev
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /home/gradle/project
+    volumes:
+      - ..:/home/gradle/project:cached
+      - gradle-cache:/home/gradle/.gradle
+      - m2-cache:/home/gradle/.m2
+    environment:
+      - TERM
+    tty: true
+    stdin_open: true
+
+volumes:
+  gradle-cache:
+  m2-cache:
