@@ -9,7 +9,7 @@ buildscript {
 
 allprojects {
     group = "io.github.kenjiohtsuka"
-    version = "0.0.2"
+    version = "0.0.4"
 
     repositories {
         mavenCentral()
