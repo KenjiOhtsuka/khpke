@@ -5,13 +5,13 @@ Kotlin HPKE library and samples.
 Quick start
 -----------
 
-1. Build and run tests (Docker Compose, recommended):
+1. Build and run tests in Docker (recommended):
 
 ```bash
-docker compose -f docker/compose.yaml build
+docker compose -f docker/compose.dev.yaml run --rm dev ./gradlew --no-daemon test
 ```
 
-2. Run the sample module locally with Gradle (uses your local JDK):
+2. Run the sample module locally with Gradle 9.5.1 on JDK 17+:
 
 ```bash
 ./gradlew :hpke-sample:run
@@ -76,17 +76,29 @@ Building & publishing
 - Development remains Docker-first. Build and test locally with Docker Compose:
 
 ```bash
-docker compose -f docker/compose.yaml build
+docker compose -f docker/compose.dev.yaml run --rm dev ./gradlew --no-daemon test
 ```
 
-- Build locally with Gradle when you want to use your host JDK:
+- Build locally with Gradle when you want to use your host JDK 17+:
 
 ```bash
-gradle clean build
+./gradlew clean build
 ```
 
-- For JitPack distribution, the repo includes `jitpack.yml` so JitPack can run `gradle clean build` on JDK 11.
+- For JitPack distribution, the repo includes `jitpack.yml` and publishes the `hpke-core` module with `publishToMavenLocal` on JDK 17 using a workspace-local Maven repository.
+- The published Maven coordinates for the core library are `com.github.kenjiohtsuka:khpke:0.0.4`-style snapshots from tags, with the `hpke-core` artifact id.
 - If you change the public API or modules, make sure tags are created from a passing build before publishing.
+
+Current configuration
+---------------------
+
+- Build toolchain: Gradle 9.5.1
+- Minimum bytecode target: Java 11
+- Development/runtime JDK: 17+
+- Core crypto provider: BouncyCastle 1.70
+- Modules: `hpke-core`, `hpke-test`, `hpke-sample`
+- Docker dev flow: `docker/compose.dev.yaml`
+- CI compose flow: `docker/compose.yaml`
 
 Notes
 -----

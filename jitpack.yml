@@ -1,4 +1,4 @@
 jdk:
-  - openjdk11
+  - openjdk17
 install:
-  - ./gradlew clean build
+  - ./gradlew -Dmaven.repo.local=.m2 :hpke-core:publishToMavenLocal
