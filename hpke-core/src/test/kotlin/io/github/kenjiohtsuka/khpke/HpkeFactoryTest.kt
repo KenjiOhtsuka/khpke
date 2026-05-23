@@ -7,14 +7,16 @@ import io.github.kenjiohtsuka.khpke.crypto.CryptoProvider
 import io.github.kenjiohtsuka.khpke.exception.InvalidConfigException
 import io.github.kenjiohtsuka.khpke.kdf.Kdf
 import io.github.kenjiohtsuka.khpke.kdf.KdfType
+import io.github.kenjiohtsuka.khpke.kdf.impl.HkdfSha256
 import io.github.kenjiohtsuka.khpke.kem.Kem
 import io.github.kenjiohtsuka.khpke.kem.KemType
+import io.github.kenjiohtsuka.khpke.kem.impl.X25519Kem
 import io.github.kenjiohtsuka.khpke.mode.HpkeMode
 import java.security.KeyPair
 import java.security.PrivateKey
 import java.security.PublicKey
 import org.junit.jupiter.api.Assertions.assertSame
-import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class HpkeFactoryTest {
@@ -56,15 +58,16 @@ class HpkeFactoryTest {
     }
 
     @Test
-    fun `rejects built in types until implementations are wired`() {
+    fun `creates built in implementations`() {
         val config = HpkeConfig(
             kem = KemType.DHKEM_X25519_HKDF_SHA256,
             kdf = KdfType.HKDF_SHA256,
             aead = AeadType.AES_GCM_128,
         )
 
-        assertThrows(InvalidConfigException::class.java) {
-            HpkeFactory.create(config, HpkeMode.Base)
-        }
+        val hpke = HpkeFactory.create(config, HpkeMode.Base)
+
+        assertTrue(hpke.suite.kem is X25519Kem)
+        assertTrue(hpke.suite.kdf is HkdfSha256)
     }
 }
